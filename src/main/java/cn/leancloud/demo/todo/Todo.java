@@ -1,11 +1,11 @@
 package cn.leancloud.demo.todo;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.alibaba.fastjson.JSON;
 import com.avos.avoscloud.AVClassName;
 import com.avos.avoscloud.AVObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @AVClassName("Todo")
 public class Todo extends AVObject {

@@ -1,17 +1,16 @@
 package cn.leancloud.demo.todo;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import cn.leancloud.EngineSessionCookie;
+import cn.leancloud.LeanEngine;
 import com.avos.avoscloud.AVCloud;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.internal.impl.JavaRequestSignImplementation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import cn.leancloud.LeanEngine;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class AppInitListener implements ServletContextListener {
@@ -25,7 +24,8 @@ public class AppInitListener implements ServletContextListener {
   private String haveStaging = System.getenv("LEAN_CLI_HAVE_STAGING");
 
   @Override
-  public void contextDestroyed(ServletContextEvent arg0) {}
+  public void contextDestroyed(ServletContextEvent arg0) {
+  }
 
   @Override
   public void contextInitialized(ServletContextEvent arg0) {
@@ -42,7 +42,6 @@ public class AppInitListener implements ServletContextListener {
     JavaRequestSignImplementation.instance().setUseMasterKey(true);
     // 打开 debug 日志
     // AVOSCloud.setDebugLogEnabled(true);
-    // 向云引擎注册云函数
-    LeanEngine.register(Cloud.class);
+    LeanEngine.addSessionCookie(new EngineSessionCookie("my secret", "avos.sess", 3600, true));
   }
 }
