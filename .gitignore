@@ -5,6 +5,7 @@ target
 
 *.iml
 .idea/
+.factorypath
 
 # LeanCloud
 .avoscloud

@@ -1,5 +1,7 @@
 package cn.leancloud.demo.todo;
 
+import java.util.Map;
+
 import cn.leancloud.EngineFunction;
 import cn.leancloud.EngineFunctionParam;
 import cn.leancloud.EngineRequestContext;
@@ -22,6 +24,13 @@ public class Cloud {
     System.out.println("authUserSessionToken: " + authUserSessionToken);
 
     return String.format("Hello %s!", name);
+  }
+
+  @EngineFunction("getEnv")
+  public static Map<String, String> getEnv() {
+    Map<String, String> envs = System.getenv();
+    System.out.println(envs);
+    return envs;
   }
 
   @EngineFunction("sendSMS")
